@@ -1,44 +1,27 @@
-
-    // function myFunction(x){
-    //     x.classList.toggle("change") ;    
-    
-    // }
-
-function hello(){
-    a = document.querySelector('.slide')
-    a.style.display='block'
-}
-function cros(){
-    a = document.querySelector('.slide')
-    a.style.display='none'
-}
-
-
-var typed = new Typed('.typed', {
-    strings: ['Developer', 'Deigner',"Programer"],
-    typeSpeed: 100,
-    loop : true,
-    startDelay: 1200,
-    backSpeed: 60,
-    backDelay: 100
-  });
-
-
-  
-    
-let a = setInterval(b);
-let d = 0;
-let width = 0;
-
-function b(){
-    let c = document.getElementById('a');
-    ++d
-    ++width
-    c.innerHTML=`${d}%`;
-    c.style.width=`${width}%`;
-    
-    if(width === 60){
-        clearInterval(a)
-        startDelay(9000)
-    }
-}
+let inputBox = document.getElementById('inputBox')
+let buttons = document.querySelectorAll('button')
+let string = ''
+buttons.forEach(element =>{
+    element.addEventListener('click',(b)=>{
+        if(b.target.innerText == '='){
+            string = String(eval(string))
+            inputBox.value = string;
+        }
+        else if(b.target.innerText == 'AC'){
+            string = ''
+            inputBox.value = string;
+        }
+        else if(b.target.innerText == 'DEL'){
+            string = string.substring(0,string.length-1)
+            inputBox.value = string;
+        }
+        else if(b.target.id == 'pulsMinus'){
+            string = String(-eval(string))
+            inputBox.value = string ;
+        }
+        else{
+            string += b.target.innerText
+            inputBox.value = string
+        }
+    })
+})
